@@ -1,37 +1,58 @@
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chata</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chata</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-  <nav class="navbar navbar-expand-sm navbar-primary fixed-bottom">
-  <ul class="navbar-nav" style="width:100%;">
-      <input type="text" id="chatInput" class="form-control" style="margin-right:20px">
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-primary fixed-bottom">
+      <ul class="navbar-nav" style="width: 100%;">
+        <input
+          type="text"
+          id="chatInput"
+          class="form-control"
+          style="margin-right: 20px;"
+        />
 
-      <button type="button" class="btn btn-outline-primary" name="button" onclick="send()">Send</button>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          name="button"
+          onclick="send()"
+        >
+          Send
+        </button>
+      </ul>
+    </nav>
+    <h1 class="container1">Chata</h1>
+    <p id="chat" class="container2"></p>
 
-  </ul>
-</nav>
-  <h1 class="container1">Chata</h1>
-  <p id="chat" class="container2"></p>
-
-<style>
-.container1{
-			text-align: center;
-      padding-top: 20px;
-		}
-    .container2{
-			padding-left: 20px;
-		}
-    body {
-    font-family: 'Acme', sans-serif;
-  }
-</style>
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="javascripts/main.js"></script>
+    <style>
+      .container1 {
+        text-align: center;
+        padding-top: 20px;
+      }
+      .container2 {
+        padding-left: 20px;
+      }
+      body {
+        font-family: "Acme", sans-serif;
+      }
+    </style>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"
+    integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo="
+    crossorigin="anonymous"
+  ></script>
+  <script type="text/javascript" src="javascripts/main.js"></script>
 </html>
