@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
@@ -7,34 +8,35 @@
     <title>Mongo - Login</title>
   </head>
   <body>
-    <h1>MongoDB Login</h1>
     <form method="POST" action="/login">
-      <div class="form control">
-        <input
-          type="text"
-          class="text is-rounded"
-          name="username"
-          placeholder="Username"
-          aria-describedby="Username"
-          aria-label="Username"
-        />
-        <div class="field">
-          <p class="control has-icons-left">
-            <input
-              class="input is-medium"
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
+      <section class="hero is-primary is-medium">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Login/Sign in</h1>
+            <h2 class="subtitle">
+              <div class="form control">
+                <input
+                  type="text"
+                  class="input is-medium"
+                  name="username"
+                  placeholder="Username"
+                />
+                <div class="field">
+                  <input
+                    class="input is-medium"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="input-group-append">
+                  <button class="button is-light" type="submit">Login</button>
+                </div>
+              </div>
+            </h2>
+          </div>
         </div>
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="submit">Login</button>
-        </div>
-      </div>
+      </section>
     </form>
   </body>
   <script

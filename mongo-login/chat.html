@@ -14,13 +14,18 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm navbar-primary fixed-bottom">
+    <h1 class="container1">Chata</h1>
+    <p id="chat" class="container2"></p>
+    <br /><br /><br /><br />
+
+    <nav class="navbar navbar-expand-sm navbar-primary bg-light fixed-bottom">
       <ul class="navbar-nav" style="width: 100%;">
         <input
           type="text"
           id="chatInput"
           class="form-control"
           style="margin-right: 20px;"
+          onchange="send()"
         />
 
         <button
@@ -33,8 +38,6 @@
         </button>
       </ul>
     </nav>
-    <h1 class="container1">Chata</h1>
-    <p id="chat" class="container2"></p>
 
     <style>
       .container1 {
@@ -54,5 +57,13 @@
     integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo="
     crossorigin="anonymous"
   ></script>
-  <script type="text/javascript" src="javascripts/main.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect("/");
+    socket.on("msg", function (data) {
+      document.getElementById("chat").innerHTML += `${data} <br>`;
+    });
+    function send() {
+      socket.emit("msg", document.getElementById("chatInput").value);
+    }
+  </script>
 </html>

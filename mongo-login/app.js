@@ -2,35 +2,46 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
+var app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
 var session = require("express-session");
 
 mongoose.connect("mongodb://localhost:27017/dhairy", { useNewUrlParser: true });
+var sharedsession = require("express-socket.io-session");
 
 const User = mongoose.model("User", {
   username: String,
   password: String,
 });
-
-var app = express();
 app.set("trust proxy", 1); // trust first proxy
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 },
+var sess = session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 },
+});
+app.use(sess);
+
+app.use(bodyParser());
+io.use(
+  sharedsession(sess, {
+    autoSave: true,
   })
 );
-app.use(bodyParser());
 
 app.get("/", function (req, res, next) {
-  console.log(req.session);
   if (req.session.user) res.sendFile(path.join(__dirname, "index.html"));
   else res.redirect("/login");
 });
 
 app.get("/login", function (req, res, next) {
   res.sendFile(path.join(__dirname, "login.html"));
+});
+
+app.get("/chat", function (req, res, next) {
+  if (req.session.user) res.sendFile(path.join(__dirname, "chat.html"));
+  else res.redirect("/login");
 });
 
 app.get("/logout", function (req, res, next) {
@@ -57,6 +68,17 @@ app.get("/users", function (req, res, next) {
   });
 });
 
-app.listen(3000, function () {
+io.on("connection", (socket) => {
+  io.sockets.emit(
+    "msg",
+    "New user connected: " + socket.handshake.session.user
+  );
+  socket.on("msg", (data) => {
+    console.log(data);
+    io.sockets.emit("msg", socket.handshake.session.user + " : " + data);
+  });
+});
+
+server.listen(3000, function () {
   console.log("Listening on port 3000");
 });

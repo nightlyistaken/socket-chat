@@ -1,24 +1,56 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
     />
-    <title>Mongo - Login</title>
+    <title>Login | Sign up</title>
   </head>
-  <body>
-    <h1>Welcome</h1>
+  <body class="content">
+    <nav class="navbar is-transparent">
+      <div class="navbar-brand"></div>
 
-    <h1>Search Users</h1>
-    <input
-      type="text"
-      id="search"
-      placeholder="Search for user"
-      onchange="send()"
-    />
-    <div id="results"></div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/login">
+            Home
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <a class="button is-primary" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Search Users
+          </h1>
+          <h2 class="subtitle">
+            <input
+              type="text"
+              id="search"
+              class="input"
+              placeholder="Search for user"
+              onchange="send()"
+            />
+          </h2>
+        </div>
+      </div>
+    </section>
+    <div class="section">
+      <div id="results"></div>
+      <br />
+      <br />
+
+      <a class="button is-primary" href="/chat">Chat publicly</a>
+    </div>
     <br />
-    <a href="/logout">Logout</a>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
