@@ -15,6 +15,16 @@
 
   <body>
     <h1 class="container1">Chata</h1>
+    <br />
+    <input
+      type="text"
+      placeholder="Enter room name"
+      class="form-control"
+      id="joinInput"
+    />
+    <button type="button" class="btn btn-info" onclick="join()">
+      Join
+    </button>
     <p id="chat" class="container2"></p>
     <br /><br /><br /><br />
 
@@ -25,7 +35,6 @@
           id="chatInput"
           class="form-control"
           style="margin-right: 20px;"
-          onchange="send()"
         />
 
         <button
@@ -64,6 +73,9 @@
     });
     function send() {
       socket.emit("msg", document.getElementById("chatInput").value);
+    }
+    function join() {
+      socket.emit("join", document.getElementById("joinInput").value);
     }
   </script>
 </html>

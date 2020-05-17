@@ -69,13 +69,20 @@ app.get("/users", function (req, res, next) {
 });
 
 io.on("connection", (socket) => {
-  io.sockets.emit(
-    "msg",
-    "New user connected: " + socket.handshake.session.user
-  );
   socket.on("msg", (data) => {
     console.log(data);
-    io.sockets.emit("msg", socket.handshake.session.user + " : " + data);
+    var currentRoom = Object.keys(io.sockets.adapter.sids[socket.id]).filter(
+      (item) => item != socket.id
+    );
+    socket.nsp
+      .to(currentRoom)
+      .emit("msg", socket.handshake.session.user + " : " + data);
+  });
+  socket.on("join", (id) => {
+    socket.join(id);
+    socket.nsp
+      .to(id)
+      .emit("msg", "New user connected: " + socket.handshake.session.user);
   });
 });
 
