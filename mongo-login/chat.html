@@ -25,6 +25,7 @@
     <button type="button" class="btn btn-info" onclick="join()">
       Join
     </button>
+
     <p id="chat" class="container2"></p>
     <br /><br /><br /><br />
 
@@ -77,5 +78,8 @@
     function join() {
       socket.emit("join", document.getElementById("joinInput").value);
     }
+    document.getElementById("joinInput").value = Math.random()
+      .toString(36)
+      .slice(2);
   </script>
 </html>
